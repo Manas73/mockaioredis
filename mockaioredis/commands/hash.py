@@ -95,3 +95,8 @@ class HashCommandsMixin:
             new.append(val)
 
         return new
+    
+    async def hincrby(self, key, field, increment):
+        """Increment a hash field."""
+        return self._redis.hincrby(key, field, increment)
+    
