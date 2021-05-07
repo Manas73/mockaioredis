@@ -111,3 +111,9 @@ async def test_hkeys(redis):
     keys = sorted(await redis.hkeys('foobar'))
 
     assert keys == [b'baz', b'foo']
+
+@pytest.mark.asyncio
+async def test_hincrby(redis):
+    redis._redis.hset('foo', 'bar', 1)
+    await redis.hincrby('foo', 'bar', 10)
+    assert redis._redis.hget('foo', 'bar') == b'11'
