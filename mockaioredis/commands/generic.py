@@ -128,3 +128,7 @@ class GenericCommandsMixin:
     async def scan(self, cursor=0, match=None, count=None):
         """Incrementally iterate the keys space."""
         return self._redis.scan(cursor=cursor, match=match, count=count)
+    
+    async def rename(self, old_key, new_key):
+        """Renames a key"""
+        return self._redis.rename(old_key=old_key, new_key=new_key)
