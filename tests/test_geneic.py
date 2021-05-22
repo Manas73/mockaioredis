@@ -164,3 +164,9 @@ async def test_scan(redis, match, cursor, count, expected_cursor, expected_keys)
     assert cursor == expected_cursor
     assert len(keys) == len(expected_keys)
     assert keys == expected_keys
+   
+@pytest.mark.asyncio
+async def test_rename(redis):
+    await redis._redis.set('foo', 'bar')
+    await redis.rename('foo', 'new_foo')
+    assert redis._redis.get('new_foo') == b'bar'
