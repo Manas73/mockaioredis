@@ -132,3 +132,7 @@ class GenericCommandsMixin:
     async def rename(self, old_key, new_key):
         """Renames a key"""
         return self._redis.rename(old_key=old_key, new_key=new_key)
+    
+    async def flushdb(self):
+        """Flushes the Database"""
+        return self._redis.flushdb()
